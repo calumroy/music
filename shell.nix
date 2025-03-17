@@ -1,10 +1,14 @@
 { pkgs ? import <nixpkgs> {} }:
 
+let
+  unstable = import (fetchTarball "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz") {};
+in
+
 pkgs.mkShell {
   buildInputs = [
     pkgs.youtube-dl
-    pkgs.yt-dlp
-    pkgs.ffmpeg  # Add the new package
-    pkgs.python312  # pYthon version 3.12
+    unstable.yt-dlp  # Use yt-dlp from unstable
+    pkgs.ffmpeg
+    pkgs.python312
   ];
 }
