@@ -6,8 +6,7 @@ in
 
 pkgs.mkShell {
   buildInputs = [
-    pkgs.youtube-dl
-    unstable.yt-dlp  # Use yt-dlp from unstable
+    unstable.yt-dlp  # Use yt-dlp from unstable instead of youtube-dl
     pkgs.ffmpeg
     pkgs.python312
   ];
