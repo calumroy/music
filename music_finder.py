@@ -25,7 +25,14 @@ def download_youtube_video(url):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Download a YouTube video as an mp3 file.')
-    parser.add_argument('-u', '--url', type=str, help='The URL of the YouTube video to download.')
+    parser.add_argument('url', nargs='?', help='The URL of the YouTube video to download.')
+    parser.add_argument('-u', '--url-flag', type=str, help='The URL of the YouTube video to download (alternative flag).')
     args = parser.parse_args()
 
-    download_youtube_video(args.url)
+    # Use positional argument if provided, otherwise use flag
+    url = args.url or args.url_flag
+    
+    if not url:
+        parser.error('Please provide a YouTube URL either as a positional argument or using -u flag')
+    
+    download_youtube_video(url)
