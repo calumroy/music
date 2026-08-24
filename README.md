@@ -72,3 +72,20 @@ nix-shell --run './music_finder.py -u "https://www.youtube.com/watch?v=6Dh-RL__u
 ## Difference
 
 `nix run` runs the app. `nix develop` opens a dev shell. `nix-shell` is the older version of that idea.
+
+## YouTube 403 Forbidden
+
+If a download finds the video, then fails with:
+
+```text
+ERROR: unable to download video data: HTTP Error 403: Forbidden
+```
+
+the URL is fine. YouTube blocked the stream because the `yt-dlp` in this flake is too old. Update the lock and retry:
+
+```bash
+nix flake update
+./get_music "https://www.youtube.com/watch?v=WGj2RBRltEM"
+```
+
+Commit `flake.lock` after it works, or the next clone will keep the old `yt-dlp`. If it still 403s, nixpkgs may not have a new enough `yt-dlp` yet.
