@@ -4,7 +4,13 @@ Download audio from a YouTube URL into `~/Music`.
 
 ## Prerequisites
 
-Install [Nix](https://nixos.org/download/). Nix needs flakes enabled for this project: `nix run`, `nix develop`, and `./get_music` all depend on them. Check first:
+Install [Nix](https://nixos.org/download/) with the official multi-user installer:
+From the nix OS page (linux install one line installer):
+```bash
+sudo curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
+```
+
+Open a new shell after it finishes. Nix needs flakes enabled for this project: `nix run`, `nix develop`, and `./get_music` all depend on them. Check first:
 
 ```bash
 nix config show experimental-features
